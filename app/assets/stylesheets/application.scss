@@ -1,0 +1,67 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+/* 共通 */
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap');
+
+body {
+    font-family: 'Zen Kurenaido', sans-serif;
+}
+
+footer.copyright {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    p, a {
+        color: #333;
+        a {
+            display: inline-block;
+            transition: all 0.5s ease-out;
+            &:hover {
+                transform: scale(1.2);
+                color: #777;
+            }
+        }
+    }
+    span {
+        font-size: 1.1rem;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+/* homes/index */
+
+main.main-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+}
+
+header.header {
+    h1 {
+        font-size: 3rem;
+    }
+    p {
+        color: #333;
+    }
+}
