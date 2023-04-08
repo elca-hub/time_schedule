@@ -1,24 +1,18 @@
-# README
+# time_schedule
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+※ このリポジトリはruby on railsの遊び場です ※
 
-Things you may want to cover:
+## version
 
-* Ruby version
+- ruby : 3.2.2
+- rails : 7.0.4.3
 
-* System dependencies
+## What's time_schedule
 
-* Configuration
+ユーザが時間割を登録するだけのシステム
 
-* Database creation
+## TODO
 
-* Database initialization
+- [ ] keycloakで外部IdPとの連携
+- [ ] ユーザのCRUD
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
