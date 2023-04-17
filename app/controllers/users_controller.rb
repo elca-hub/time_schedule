@@ -28,6 +28,10 @@ class UsersController < ApplicationController
 				redirect_to root_path
 			end
 		else
+			if session.key?(:user_password)
+				session[:user_password] = nil
+			end
+
             redirect_to root_path
         end
 	end
