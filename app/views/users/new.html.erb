@@ -1,0 +1,22 @@
+<header class="text-center">
+    <h1>新規登録</h1>
+    <p>ユーザの新規登録を行います</p>
+</header>
+
+<%= form_with model: @user do |form| %>
+  <div style="margin: auto 10rem;">
+    <div class="mb-3">
+      <label for="user_name" class="form-label">名前</label><br>
+      <input type="text" name="user[name]" id="user_name" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="user_pw" class=form-label>名前</label><br>
+      <input type="password" name="user[pw]" id="user_pw" class="form-control">
+    </div>
+
+    <div class="mb-3 text-center">
+      <input class="btn btn-outline-success" type="submit" name="commit" value="ユーザを追加" data-disable-with="ユーザを追加中...">
+    </div>
+  </div>
+<% end %>
