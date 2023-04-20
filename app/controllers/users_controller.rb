@@ -6,8 +6,7 @@ class UsersController < ApplicationController
     def create
     	@user = User.new(user_params)
     	if @user.save
-            session[:user_name] = @user.name
-            session[:user_password] = @user.password
+			set_session(@user.name, @user.password)
     		redirect_to @user
     	else
     		render :new, status: :unprocessable_entity
@@ -20,8 +19,7 @@ class UsersController < ApplicationController
 		login_user = User.find_by_name(@user.name)
 
 		if login_user && login_user.authenticate(@user.password)
-			session[:user_name] = @user.name
-			session[:user_password] = @user.password
+			set_session(@user.name, @user.password)
 
 			redirect_to "/users/#{login_user.id}"
 		end
@@ -60,8 +58,7 @@ class UsersController < ApplicationController
 			p session_user.id
 			p params[:id]
 			if session_user.id.to_s == params[:id]
-				session[:user_password] = nil
-				session[:user_name] = nil
+				set_session(nil, nil)
 				
 				redirect_to root_path
 			end
@@ -72,4 +69,9 @@ class UsersController < ApplicationController
     	def user_params
     		params.require(:user).permit(:name, :password)
     	end
+
+		def set_session(user_name, user_password)
+			session[:user_name] = user_name
+			session[:user_password] = user_password
+		end
 end
