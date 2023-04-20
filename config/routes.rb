@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   get "/login", to: "homes#login"
 
+  post "/logout", to: "users#logout"
+
   resources :users
 end

@@ -8,4 +8,11 @@
     <h1><%= @login_user.name %></h1>
     <p>ようこそ</p>
 </header>
+
+<%= form_with url: "/logout", method: :post do |form| %>
+    <input type="hidden" name="id" value="<%= @login_user.id %>">
+    <button type="submit" class="btn btn-warning">
+        ログアウト
+    </button>
+<% end %>
 <% end %>

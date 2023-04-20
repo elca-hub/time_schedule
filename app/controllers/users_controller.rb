@@ -36,6 +36,20 @@ class UsersController < ApplicationController
             redirect_to root_path
         end
 	end
+
+	def logout
+		if session.key?(:user_name) || params.key?(:id)
+			session_user = User.find_by_name(session[:user_name])
+			p session_user.id
+			p params[:id]
+			if session_user.id.to_s == params[:id]
+				session[:user_password] = nil
+				session[:user_name] = nil
+				
+				redirect_to root_path
+			end
+		end
+	end
     
     private
     	def user_params
