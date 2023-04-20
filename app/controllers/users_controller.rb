@@ -14,6 +14,23 @@ class UsersController < ApplicationController
     	end
     end
 
+	def login_check
+		@user = User.new(user_params)
+
+		login_user = User.find_by_name(@user.name)
+
+		if login_user && login_user.authenticate(@user.password)
+			session[:user_name] = @user.name
+			session[:user_password] = @user.password
+
+			redirect_to "/users/#{login_user.id}"
+		end
+	end
+
+	def login
+		@user = User.new
+	end
+
 	def show
 		if session.key?(:user_name) || session.key?(:user_password)
 			begin
@@ -23,7 +40,7 @@ class UsersController < ApplicationController
 					@login_user = user
 					session[:user_name] = user.name
 				else
-					redirect_to root_path
+					redirect_to "users/login"
 				end
 			rescue
 				@login_user = nil
@@ -33,7 +50,7 @@ class UsersController < ApplicationController
 				session[:user_password] = nil
 			end
 
-            redirect_to root_path
+            redirect_to "/users/login"
         end
 	end
 

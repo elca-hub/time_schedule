@@ -5,5 +5,9 @@ Rails.application.routes.draw do
 
   post "/logout", to: "users#logout"
 
+  get "/users/login", to: "users#login"
+
+  post "/users/login", to: "users#login_check"
+
   resources :users
 end
