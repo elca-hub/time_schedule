@@ -16,13 +16,17 @@ class UsersController < ApplicationController
 
 	def show
 		if session.key?(:user_name) || session.key?(:user_password)
-			user = User.find(params[:id])
-			# ユーザが存在して認証が成功したら
-			if user && user.authenticate(session[:user_password])
-				@login_user = user
-                session[:user_name] = user.name
-			else
-				redirect_to root_path
+			begin
+				user = User.find(params[:id])
+				# ユーザが存在して認証が成功したら
+				if user && user.authenticate(session[:user_password])
+					@login_user = user
+					session[:user_name] = user.name
+				else
+					redirect_to root_path
+				end
+			rescue
+				@login_user = nil
 			end
 		else
 			if session.key?(:user_password)

@@ -1,4 +1,11 @@
+<% if @login_user.nil? %>
+<div class="user-not-found-box">
+    <h1 class="text-danger">ユーザが見つかりませんでした</h1>
+    <p>大変申し訳ございません、ユーザを見つけることができませんでした。再度お試しください。</p>
+</div>
+<% else %>
 <header class="text-center">
     <h1><%= @login_user.name %></h1>
     <p>ようこそ</p>
 </header>
+<% end %>
