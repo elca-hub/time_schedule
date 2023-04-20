@@ -30,7 +30,13 @@ bin/rails server
 ### モデル(コントローラー)の生成
 
 ```bin
-bin/rails generate model(controller) [名称]
+bin/rails generate model(controller) [名称] [プロパティ]
+```
+
+Ex.
+
+```bin
+bin/rails generate model User name:string password:string
 ```
 
 ### マイグレーション
