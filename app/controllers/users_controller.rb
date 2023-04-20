@@ -15,9 +15,6 @@ class UsersController < ApplicationController
     end
 
 	def show
-		puts session[:user_name]
-		puts session[:user_password]
-		
 		if session.key?(:user_name) || session.key?(:user_password)
 			user = User.find(params[:id])
 			# ユーザが存在して認証が成功したら
