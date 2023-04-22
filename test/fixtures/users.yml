@@ -5,5 +5,5 @@ one:
   password_digest: MyString
 
 two:
-  name: MyString
+  name: Test
   password_digest: MyString
