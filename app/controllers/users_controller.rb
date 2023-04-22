@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     def create
     	@user = User.new(user_params)
     	if @user.save
-			set_session(@user.name, @user.password)
+			set_session(@user.id, @user.password)
     		redirect_to @user
     	else
     		render :new, status: :unprocessable_entity
@@ -18,60 +18,37 @@ class UsersController < ApplicationController
 
 		login_user = User.find_by_name(@user.name)
 
-		if login_user && login_user.authenticate(@user.password)
-			set_session(@user.name, @user.password)
+		p login_user.id
 
-			redirect_to "/users/#{login_user.id}"
-		end
+		can_not_login = check_user_auth(login_user, @user.password).nil?
+
+		redirect_to can_not_login ? "/users/login" : "/users/#{login_user.id}"
 	end
 
 	def login
+		user = check_user_auth
+		if user
+			redirect_to "/users/#{user.id}"
+		end
 		@user = User.new
 	end
 
 	def show
-		if session.key?(:user_name) || session.key?(:user_password)
-			begin
-				user = User.find(params[:id])
-				# ユーザが存在して認証が成功したら
-				if user && user.authenticate(session[:user_password])
-					@login_user = user
-					session[:user_name] = user.name
-				else
-					redirect_to "users/login"
-				end
-			rescue
-				@login_user = nil
-			end
-		else
-			if session.key?(:user_password)
-				session[:user_password] = nil
-			end
+		@login_user = check_user_auth
 
-            redirect_to "/users/login"
-        end
+		if @login_user == nil
+			redirect_to "/users/login"
+		end
 	end
 
 	def logout
-		if session.key?(:user_name) || params.key?(:id)
-			session_user = User.find_by_name(session[:user_name])
-			p session_user.id
-			p params[:id]
-			if session_user.id.to_s == params[:id]
-				set_session(nil, nil)
-				
-				redirect_to root_path
-			end
-		end
+		set_session(nil, nil)
+
+		redirect_to root_path
 	end
     
     private
     	def user_params
     		params.require(:user).permit(:name, :password)
     	end
-
-		def set_session(user_name, user_password)
-			session[:user_name] = user_name
-			session[:user_password] = user_password
-		end
 end
