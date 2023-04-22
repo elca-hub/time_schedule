@@ -66,6 +66,7 @@ end
 
 group :development do
   gem 'bundler-audit'
+  gem 'brakeman'
 end
 
 group :test do
