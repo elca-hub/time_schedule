@@ -1,5 +1,7 @@
 # time_schedule
 
+[![Ruby on Rails CI](https://github.com/elca-hub/time_schedule/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/elca-hub/time_schedule/actions/workflows/rubyonrails.yml)
+
 ※ このリポジトリはruby on railsの遊び場です ※
 
 ## version
