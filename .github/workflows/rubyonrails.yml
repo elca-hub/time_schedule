@@ -38,8 +38,10 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace any other lints here
+      - name: Security audit update
+        run: run: bundle exec bundler-audit check --update
       - name: Security audit dependencies
-        run: bin/bundler-audit --update
+        run: bundle exec bundler-audit
       - name: Security audit application code
         run: bin/brakeman -q -w2
       - name: Lint Ruby files
