@@ -16,7 +16,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   # ユーザモデルのみからタスクを取得することが可能か検証
   test "should fetch task only use user model" do
-    user = User.new(name: "test", password: "user")
+    user = User.new(name: "test", password: "userpassword")
 
     task = Task.new(title: "task test", content: "this is test task")
 
@@ -27,5 +27,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     test_user = User.find(user.id)
     assert test_user.tasks[0] == task
+  end
+
+  test "should do not inseart password's charactar length less than 8 and more than 32." do
+    assert User.new(name: "test user", password: "test").save == false
   end
 end
