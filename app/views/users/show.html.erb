@@ -9,6 +9,12 @@
     <p>ようこそ</p>
 </header>
 
+<div class="user-action-list-box">
+    <ul>
+        <li><%= link_to "タスク一覧", user_tasks_path(user_id: @login_user.id) %></li>
+    </ul>
+</div>
+
 <%= form_with url: "/logout", method: :post do |form| %>
     <input type="hidden" name="id" value="<%= @login_user.id %>">
     <div class="text-center">

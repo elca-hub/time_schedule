@@ -1,4 +1,14 @@
 class TasksController < ApplicationController
+    def index
+      @user = check_user_auth
+
+      if @user.nil?
+        redirect_to  "/users/login"
+        return
+      end
+
+      @tasks = @user.tasks
+    end
     def new
       if check_user_auth.nil?
         redirect_to "/users/login"
