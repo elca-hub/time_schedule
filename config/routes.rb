@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 
   post "/users/login", to: "users#login_check"
 
+  resources :users do
+    resources :tasks
+  end
 end

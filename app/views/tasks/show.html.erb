@@ -1,0 +1,14 @@
+<% if @task.nil? %>
+<div class="user-not-found-box">
+    <h1 class="text-danger">ユーザが見つかりませんでした</h1>
+    <p>大変申し訳ございません、ユーザを見つけることができませんでした。再度お試しください。</p>
+</div>
+<% else %>
+<header class="text-center">
+    <h1><%= @task.title %></h1>
+    <p>ようこそ</p>
+</header>
+
+<div class="task-content">
+<%= @task.content %>
+</div>
