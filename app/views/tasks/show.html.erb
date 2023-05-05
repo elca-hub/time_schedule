@@ -1,7 +1,7 @@
 <% if @task.nil? %>
 <div class="user-not-found-box">
-    <h1 class="text-danger">ユーザが見つかりませんでした</h1>
-    <p>大変申し訳ございません、ユーザを見つけることができませんでした。再度お試しください。</p>
+    <h1 class="text-danger">タスクが見つかりませんでした</h1>
+    <p>大変申し訳ございません、タスクを見つけることができませんでした。再度お試しください。</p>
 </div>
 <% else %>
 <header class="text-center">
@@ -11,5 +11,7 @@
 <div class="task-content">
 <%= @task.content %>
 </div>
+
+<%= link_to "タスクを更新する", edit_user_task_path(user_id: @user.id, id: @task.id) %>
 
 <% end %>

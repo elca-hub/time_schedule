@@ -34,7 +34,36 @@ class TasksController < ApplicationController
       end
     end
 
+    def edit
+      @user = check_user_auth
+
+      if @user.nil?
+        redirect_to "/users/login"
+
+        return
+      end
+
+      @task = Task.find(params[:id])
+
+      if @task.nil?
+        redirect_to "/users/#{params[:user_id]}"
+
+        return
+      end
+    end
+
+    def update
+      Task.update(params[:id], task_params)
+
+      redirect_to @task
+    end
+
     def show
+      @user = check_user_auth
+      if @user.nil?
+        redirect_to "/users/login"
+        return
+      end
       @task = Task.find(params[:id])
     end
 
