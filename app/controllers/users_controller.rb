@@ -18,7 +18,10 @@ class UsersController < ApplicationController
 
 		login_user = User.find_by_name(@user.name)
 
-		p login_user.id
+		if login_user.nil?
+			redirect_to "/users/login"
+			return
+		end
 
 		can_not_login = check_user_auth(login_user, @user.password).nil?
 
