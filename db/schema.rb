@@ -14,7 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_000453) do
   create_table "tasks", force: :cascade do |t|
     t.string "title", null: false
     t.string "content", null: false
-    t.boolean "is_done", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -22,7 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_000453) do
   create_table "user_tasks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "task_id", null: false
-    t.boolean "is_owner", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_user_tasks_on_task_id"
