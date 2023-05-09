@@ -4,4 +4,4 @@ class User < ApplicationRecord
     has_many :tasks, through: :user_tasks
     validates :name, length: {minimum:1, maximum:100}, uniqueness: true, presence: true
     validates :password, length: {minimum: 8, maximum: 32}, presence: true
-end
+endend
