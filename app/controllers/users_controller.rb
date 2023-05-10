@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     def create
     	@user = User.new(user_params)
     	if @user.save
-			set_session(@user.id, @user.password)
+			update_auth_token(@user) # 認証トークンの作成
     		redirect_to @user
     	else
     		render :new, status: :unprocessable_entity
@@ -16,20 +16,13 @@ class UsersController < ApplicationController
 	def login_check
 		@user = User.new(user_params)
 
-		login_user = User.find_by_name(@user.name)
+		login_user = user_login(@user.name, @user.password)
 
-		if login_user.nil?
-			redirect_to "/users/login"
-			return
-		end
-
-		can_not_login = check_user_auth(login_user, @user.password).nil?
-
-		redirect_to can_not_login ? "/users/login" : "/users/#{login_user.id}"
+		redirect_to login_user == nil ? "/users/login" : "/users/#{login_user.id}"
 	end
 
 	def login
-		user = check_user_auth
+		user = authenticate_user
 		if user
 			redirect_to "/users/#{user.id}"
 		end
@@ -37,7 +30,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@login_user = check_user_auth
+		@login_user = authenticate_user
 
 		if @login_user == nil
 			redirect_to "/users/login"
@@ -45,7 +38,7 @@ class UsersController < ApplicationController
 	end
 
 	def logout
-		set_session(nil, nil)
+		user_logout
 
 		redirect_to root_path
 	end

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     def index
-      @user = check_user_auth
+      @user = authenticate_user
 
       if @user.nil?
         redirect_to  "/users/login"
@@ -10,7 +10,7 @@ class TasksController < ApplicationController
       @tasks = @user.tasks
     end
     def new
-      if check_user_auth.nil?
+      if authenticate_user.nil?
         redirect_to "/users/login"
         return
       end
@@ -21,7 +21,7 @@ class TasksController < ApplicationController
     def create
       @task = Task.new(task_params)
 
-      login_user = check_user_auth
+      login_user = authenticate_user
 
       if login_user == nil
         redirect_to "/users/login"
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
     end
 
     def edit
-      @user = check_user_auth
+      @user = authenticate_user
 
       if @user.nil?
         redirect_to "/users/login"
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     end
 
     def show
-      @user = check_user_auth
+      @user = authenticate_user
       if @user.nil?
         redirect_to "/users/login"
         return

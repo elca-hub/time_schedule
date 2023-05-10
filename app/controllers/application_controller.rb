@@ -1,45 +1,66 @@
 class ApplicationController < ActionController::Base
-    # ユーザがログイン状態か否かを判定する関数。もしログインできなかった場合、sessionをnilにする
-    # @return Optional<User>
-    def check_user_auth(login_user = nil, input_password = nil)
-        begin
-            if login_user && input_password == nil
-                raise ArgumentError.new("ログイン対象のユーザを指定した場合、検証するパスワードも引数に渡す必要があります")
-            end
+    def update_auth_token(user)
+        auth_token = SecureRandom.uuid
 
-            if !login_user && (!session.key?(:user_id) || !session.key?(:user_password))
-                raise StandardError.new("sessionの値が空になっています")
-            end
+        user.auth_token = auth_token
+        # トークン有効期間は1分
+        user.auth_token_expiration = Time.now + 60
 
-            param_user_id = params[:user_id] ? params[:user_id] : params[:id]
+        p user.save
 
-            param_user_id = login_user ? login_user.id : param_user_id
+        session[:auth_token] = auth_token
+    end
 
-            param_user_id = param_user_id ? param_user_id : session[:user_id]
+    def user_login(user_name, input_password)
+        user = User.find_by_name(user_name)
 
-            param_user_id = param_user_id.to_i
+        if user && user.authenticate(input_password)
+            update_auth_token(user)
+            return user
+        end
 
-            if param_user_id != session[:user_id] && session[:user_id] != nil && login_user == nil
-                raise StandardError.new("sessionの値が不正です")
-            end
+        return nil
+    end
 
-            user = login_user.nil? ? User.find(param_user_id) : login_user
-            if user && user.authenticate(input_password ? input_password : session[:user_password])
-                session[:user_id] = user.id
+    def user_logout
+        session[:auth_token] = nil
+    end
 
-                if login_user
-                    session[:user_password] = input_password
-                end
-    
-                return user
-            end
+    def authenticate_user
+        param_user_id = params[:user_id] ? params[:user_id] : params[:id]
 
-            set_session
-        rescue => exception
-            p exception.message
-            set_session
+        if param_user_id == nil
+            p "ユーザIDが指定されていません"
             return nil
         end
+
+        access_user = User.find(param_user_id.to_i) # アクセスしようとしているユーザ
+
+        if access_user == nil
+            p "指定されたユーザが存在しません"
+            return nil
+        end
+
+        user_auth_token = access_user.auth_token # アクセスしようとしているユーザの認証トークン
+        user_auth_token_expiration = access_user.auth_token_expiration # アクセスしようとしているユーザの認証トークンの有効期限
+
+        if user_auth_token == nil || user_auth_token_expiration == nil || session[:auth_token] == nil
+            p "認証トークンが存在しません"
+            return nil
+        end
+
+        if user_auth_token_expiration < DateTime.now || user_auth_token != session[:auth_token]
+            p user_auth_token_expiration
+            p DateTime.now
+            p user_auth_token
+            p session[:auth_token]
+            p "認証トークンが不正です"
+            return nil
+        end
+
+        session[:auth_token] = user_auth_token
+
+        return access_user
     end
 
     def set_session(user_id = nil, user_password = nil)
