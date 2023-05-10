@@ -11,7 +11,19 @@ class ApplicationController < ActionController::Base
                 raise StandardError.new("sessionの値が空になっています")
             end
 
-            user = login_user.nil? ? User.find(session[:user_id]) : login_user
+            param_user_id = params[:user_id] ? params[:user_id] : params[:id]
+
+            param_user_id = login_user ? login_user.id : param_user_id
+
+            param_user_id = param_user_id ? param_user_id : session[:user_id]
+
+            param_user_id = param_user_id.to_i
+
+            if param_user_id != session[:user_id] && session[:user_id] != nil && login_user == nil
+                raise StandardError.new("sessionの値が不正です")
+            end
+
+            user = login_user.nil? ? User.find(param_user_id) : login_user
             if user && user.authenticate(input_password ? input_password : session[:user_password])
                 session[:user_id] = user.id
 
