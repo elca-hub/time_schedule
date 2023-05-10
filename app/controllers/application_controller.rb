@@ -19,14 +19,14 @@ class ApplicationController < ActionController::Base
                     session[:user_password] = input_password
                 end
     
-                return user;
+                return user
             end
 
             set_session
         rescue => exception
             p exception.message
             set_session
-            return nil;
+            return nil
         end
     end
 
