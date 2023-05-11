@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
         # トークン有効期間は1分
         user.auth_token_expiration = Time.now + 60
 
-        p user.save
+        user.save
 
         session[:auth_token] = auth_token
     end
@@ -50,10 +50,6 @@ class ApplicationController < ActionController::Base
         end
 
         if user_auth_token_expiration.to_fs(:time) < Time.zone.now.to_fs(:time) || user_auth_token != session[:auth_token]
-            p user_auth_token_expiration.to_s
-            p Time.zone.now.to_s(:time)
-            p user_auth_token
-            p session[:auth_token]
             p "認証トークンが不正です"
             return nil
         end
