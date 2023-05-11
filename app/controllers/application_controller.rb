@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
         user = User.find_by_name(user_name)
 
         if user && user.authenticate(input_password)
+            user.password = input_password # これがないとupdate_auth_token内のuser.saveが正しく動作しない
             update_auth_token(user)
             return user
         end
