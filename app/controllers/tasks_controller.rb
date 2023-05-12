@@ -1,14 +1,11 @@
 class TasksController < ApplicationController
+    before_action :authenticate_user!
+
     def index
-      @user = authenticate_user
-
-      if @user.nil?
-        redirect_to  "/users/login"
-        return
-      end
-
-      @tasks = @user.tasks
+		@user = current_user
+    	@tasks = @user.tasks
     end
+
     def new
       if authenticate_user.nil?
         redirect_to "/users/login"
@@ -27,9 +24,9 @@ class TasksController < ApplicationController
         redirect_to "/users/login"
       else
         if @task.save
-          UserTask.create(user_id: login_user.id, task_id: @task.id)
+        	UserTask.create(user_id: login_user.id, task_id: @task.id)
           
-          redirect_to "/users/#{login_user.id}/tasks/#{@task.id}"
+        	redirect_to "/users/#{login_user.id}/tasks/#{@task.id}"
         end
       end
     end
