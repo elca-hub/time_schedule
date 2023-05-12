@@ -4,4 +4,7 @@ Rails.application.routes.draw do
 
   get "/users/" => "users#index"
 
+  scope '/users' do
+    resources :tasks
+  end
 end
