@@ -97,5 +97,17 @@ header.header {
     width: max-content;
 }
 
+/* users/index */
+.user-action-list-box {
+    margin: auto 10rem;
+    text-align: center;
+}
+
+
+.user-todo-list {
+    width: fit-content;
+    margin: auto;
+}
+
 /* controller */
 /* クラスの命名の法則は「.[controller_name].[action_name]」 */
