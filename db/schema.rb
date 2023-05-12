@@ -29,16 +29,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_000453) do
     t.index ["user_id"], name: "index_user_tasks_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "password_digest", null: false
-    t.string "auth_token"
-    t.time "auth_token_expiration"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_users_on_name", unique: true
-  end
-
   add_foreign_key "user_tasks", "tasks"
-  add_foreign_key "user_tasks", "users"
 end
