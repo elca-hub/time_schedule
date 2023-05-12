@@ -7,8 +7,10 @@
     <ul>
         <li></li>
     </ul>
-    <%= button_to 'ログアウト', 
-      destroy_user_session_path,
-      method: :delete
+    <%=
+        button_to 'ログアウト', 
+        destroy_user_session_path,
+        class: 'btn btn-outline-warning',
+        method: :delete
     %>
 </div>
