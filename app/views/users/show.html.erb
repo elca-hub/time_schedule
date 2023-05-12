@@ -1,26 +1,10 @@
-<% if @login_user.nil? %>
-<div class="user-not-found-box">
-    <h1 class="text-danger">ユーザが見つかりませんでした</h1>
-    <p>大変申し訳ございません、ユーザを見つけることができませんでした。再度お試しください。</p>
-</div>
-<% else %>
 <header class="text-center">
-    <h1><%= @login_user.name %></h1>
+    <h1><%= @user.class %></h1>
     <p>ようこそ</p>
 </header>
 
 <div class="user-action-list-box">
     <ul>
-        <li><%= link_to "タスク一覧", user_tasks_path(user_id: @login_user.id) %></li>
+        <li></li>
     </ul>
 </div>
-
-<%= form_with url: "/logout", method: :post do |form| %>
-    <input type="hidden" name="id" value="<%= @login_user.id %>">
-    <div class="text-center">
-        <button type="submit" class="btn btn-warning">
-            ログアウト
-        </button>
-    </div>
-<% end %>
-<% end %>

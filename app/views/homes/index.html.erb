@@ -5,6 +5,10 @@
         <a href="/users/login" class="btn btn-outline-primary">
             ログイン
         </a>
+        <%= button_to 'ログアウト', 
+          destroy_user_session_path,
+          method: :delete
+        %>
         <%= render 'shared/register' %>
     </header>
 </main>

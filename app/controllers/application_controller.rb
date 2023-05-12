@@ -73,4 +73,8 @@ class ApplicationController < ActionController::Base
         session[:user_id] = user_id
         session[:user_password] = user_password
     end
+
+    def after_sign_in_path_for(resource)
+        "/users/show"
+    end
 end
