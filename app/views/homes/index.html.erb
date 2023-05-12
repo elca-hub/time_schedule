@@ -2,12 +2,10 @@
     <header class="text-center header">
         <h1>Time Schedule</h1>
         <p>大学生のための画期的なスケジュール管理システム</p>
-        <a href="/users/login" class="btn btn-outline-primary">
-            ログイン
-        </a>
-        <%= button_to 'ログアウト', 
-          destroy_user_session_path,
-          method: :delete
+        <%= 
+            link_to 'ログイン', 
+            new_user_session_path, 
+            class: 'btn btn-outline-primary'
         %>
         <%= render 'shared/register' %>
     </header>
