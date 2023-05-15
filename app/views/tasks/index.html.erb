@@ -5,7 +5,7 @@
 
 <ol>
     <% @tasks.each do |task| %>
-        <li><%= link_to task.title, user_task_path(user_id: @user.id, id: task.id) %></li>
+        <li><%= link_to task.title, task_path(task.id) %></li>
   <% end %>
 </ol>
 
