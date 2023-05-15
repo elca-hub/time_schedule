@@ -4,10 +4,9 @@
 </header>
 
 <div class="user-action-list-box">
-    <ul class="user-todo-list">
-        <li></li>
-        <li></li>
-    </ul>
+    <div class="mb-4">
+        <%= link_to 'タスクの表示', tasks_path, class: 'btn btn-outline-primary' %>
+    </div>
     <%=
         button_to 'ログアウト', 
         destroy_user_session_path,
