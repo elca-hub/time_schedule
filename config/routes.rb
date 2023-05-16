@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
   root "homes#index"
+  devise_for :users
 
-  post "/logout", to: "users#logout"
+  get "/users/" => "users#index"
 
-  get "/users/login", to: "users#login"
-
-  post "/users/login", to: "users#login_check"
-
-  resources :users do
+  scope '/users' do
     resources :tasks
   end
 end

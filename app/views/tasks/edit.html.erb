@@ -3,15 +3,15 @@
     <p><%= @task.title %>の更新を行います</p>
 </header>
 
-<%= form_with url: edit_user_task_path(user_id: @user.id, id: @task.id) do |form| %>
+<%= form_with url: task_path(@task.id), method: :put  do |form| %>
   <div style="margin: auto 10rem;">
     <div class="mb-3">
       <label for="task_title" class="form-label">タイトル</label><br>
-      <input type="text" name="task[title]" id="task_title" class="form-control">
+      <input type="text" name="task[title]" id="task_title" class="form-control" value="<%= @task.title %>">
     </div>
     
     <div class="form-floating mb-3">
-      <textarea class="form-control" placeholder="記事の内容を書いてください" id="task_content" name="task[content]"></textarea>
+      <textarea class="form-control" placeholder="記事の内容を書いてください" id="task_content" name="task[content]"><%= @task.content %></textarea>
       <label for="task_content">内容</label>
     </div>
 

@@ -1,48 +1,27 @@
 class TasksController < ApplicationController
+    before_action :authenticate_user!
+
     def index
-      @user = authenticate_user
-
-      if @user.nil?
-        redirect_to  "/users/login"
-        return
-      end
-
-      @tasks = @user.tasks
+		@user = current_user
+    	@tasks = @user.tasks
     end
-    def new
-      if authenticate_user.nil?
-        redirect_to "/users/login"
-        return
-      end
 
+    def new
       @task = Task.new
     end
 
     def create
-      @task = Task.new(task_params)
+    	@task = Task.new(task_params)
 
-      login_user = authenticate_user
-
-      if login_user == nil
-        redirect_to "/users/login"
-      else
-        if @task.save
-          UserTask.create(user_id: login_user.id, task_id: @task.id)
-          
-          redirect_to "/users/#{login_user.id}/tasks/#{@task.id}"
-        end
-      end
+		user = current_user
+    	if @task.save
+    		UserTask.create(user_id: user.id, task_id: @task.id)
+		
+    		redirect_to tasks_path
+    	end
     end
 
     def edit
-      @user = authenticate_user
-
-      if @user.nil?
-        redirect_to "/users/login"
-
-        return
-      end
-
       @task = Task.find(params[:id])
 
       if @task.nil?
@@ -53,17 +32,14 @@ class TasksController < ApplicationController
     end
 
     def update
-      Task.update(params[:id], task_params)
+		@task = Task.find(params[:id])
 
-      redirect_to @task
+		@task.update(task_params)
+
+    	redirect_to tasks_path
     end
 
     def show
-      @user = authenticate_user
-      if @user.nil?
-        redirect_to "/users/login"
-        return
-      end
       @task = Task.find(params[:id])
     end
 
@@ -71,5 +47,5 @@ class TasksController < ApplicationController
     	def task_params
     		params.require(:task).permit(:title, :content)
     	end
-  end
+end
   

@@ -47,6 +47,10 @@ footer.copyright {
     }
 }
 
+header {
+    margin-top: 2rem;
+}
+
 p.register-text {
     font-size: 0.75rem;
     color: #777;
@@ -55,6 +59,14 @@ p.register-text {
     a {
         font-size: 1rem;
     }
+}
+
+.center-layout {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
 }
 
 /* homes/index */
@@ -86,3 +98,27 @@ header.header {
     width: max-content;
     text-align: center;
 }
+
+/* sign_in、sign_up時のformのレイアウト */
+
+.sign-in-sign-up-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+}
+
+/* users/index */
+.user-action-list-box {
+    margin: auto 10rem;
+    text-align: center;
+}
+
+.user-task-list {
+    width: fit-content;
+    margin: auto;
+}
+
+/* controller */
+/* クラスの命名の法則は「.[controller_name].[action_name]」 */

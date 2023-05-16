@@ -1,0 +1,16 @@
+<header class="text-center">
+    <h1><%= @user.name %></h1>
+    <p>ようこそ</p>
+</header>
+
+<div class="user-action-list-box">
+    <div class="mb-4">
+        <%= link_to 'タスクの表示', tasks_path, class: 'btn btn-outline-primary' %>
+    </div>
+    <%=
+        button_to 'ログアウト', 
+        destroy_user_session_path,
+        class: 'btn btn-outline-warning',
+        method: :delete
+    %>
+</div>
