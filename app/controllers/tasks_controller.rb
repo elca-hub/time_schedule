@@ -32,9 +32,11 @@ class TasksController < ApplicationController
     end
 
     def update
-      Task.update(params[:id], task_params)
+		@task = Task.find(params[:id])
 
-      redirect_to @task
+		@task.update(task_params)
+
+    	redirect_to tasks_path
     end
 
     def show
