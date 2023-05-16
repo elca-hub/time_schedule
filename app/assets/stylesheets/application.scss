@@ -61,6 +61,14 @@ p.register-text {
     }
 }
 
+.center-layout {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+}
+
 /* homes/index */
 
 main.main-title {
@@ -107,8 +115,7 @@ header.header {
     text-align: center;
 }
 
-
-.user-todo-list {
+.user-task-list {
     width: fit-content;
     margin: auto;
 }

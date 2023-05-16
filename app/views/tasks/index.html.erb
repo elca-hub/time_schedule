@@ -3,10 +3,15 @@
     <p><%= @user.name %>さんのタスク数 : <%= @tasks.length %></p>
 </header>
 
-<ol>
-    <% @tasks.each do |task| %>
-        <li><%= link_to task.title, task_path(task.id) %></li>
-  <% end %>
-</ol>
+<div class="center-layout">
+    <ol class="user-task-list my-4">
+        <% @tasks.each do |task| %>
+            <li><%= link_to task.title, task_path(task.id) %></li>
+      <% end %>
+    </ol>
 
-<%= link_to "新しくタスクを作成する", new_task_path %>
+    <div class="text-center mt-4">
+        <%= link_to "新しくタスクを作成する", new_task_path, class: "btn btn-outline-success" %>
+    </div>
+</div>
+
