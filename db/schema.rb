@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_023243) do
-  create_table "tasks", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_000453) do
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.string "content", null: false
     t.boolean "is_done", default: false, null: false
@@ -19,9 +19,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_023243) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_tasks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "task_id", null: false
+  create_table "user_tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
     t.boolean "is_owner", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_023243) do
     t.index ["user_id"], name: "index_user_tasks_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
