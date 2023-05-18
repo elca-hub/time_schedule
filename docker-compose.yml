@@ -13,8 +13,8 @@ services:
     build: .
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      DB_USER: root
+      DB_PASSWORD: password
     volumes:
       - .:/myapp
     ports:
@@ -26,4 +26,3 @@ services:
       - db
 volumes:
   mysql_volume:
-  
