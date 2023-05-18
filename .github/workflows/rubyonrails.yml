@@ -23,10 +23,10 @@ jobs:
           bundler-cache: true
       # Add or replace database setup steps here
       - name: Set up database schema
-        run: bin/rails db:migrate
+        run: bin/rails db:migrate RAILS_ENV="test"
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rake
+        run: bin/rails test
 
   lint:
     runs-on: ubuntu-latest
