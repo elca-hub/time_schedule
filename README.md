@@ -29,7 +29,7 @@
 ### 起動
 
 ```bin
-docker-compose up web
+docker compose up web
 ```
 
 ### 初回のみ必要な操作
@@ -37,8 +37,8 @@ docker-compose up web
 ※ webコンテナはupした状態で操作すること
 
 ```bin
-docker-compose exec web rails:create
-docker-compose exec web rails:migrate
+docker compose exec web rails:create
+docker compose exec web rails:migrate
 ```
 
 ## 詳細
