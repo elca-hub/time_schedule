@@ -24,9 +24,13 @@ jobs:
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:migrate RAILS_ENV="test"
-      # Add or replace test runners here
+      # Add or replace test runners 
+      - name: Run Docker
+        run: docker-compose up db -d
       - name: Run tests
         run: bundle exec rspec
+      - name: Exit Docker
+        run: docker-compose down
 
   lint:
     runs-on: ubuntu-latest
