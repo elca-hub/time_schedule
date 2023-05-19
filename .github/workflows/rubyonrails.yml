@@ -21,18 +21,18 @@ jobs:
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
           bundler-cache: true
-      - name: Build db
-        run: docker-compose build db
-      - name: Compose db
-        run: docker-compose up -d db
-      - name: sleep for waiting launch db
-        run: sleep 1m
       # Add or replace database setup steps here
+      - name: Open Docker
+        run: docker-compose up -d
+      - name: db:create
+        run: docker-compose exec web bin/rails db:create
       - name: Set up database schema
-        run: bin/rails db:migrate RAILS_ENV="test"
+        run: docker-compose exec web bin/rails db:migrate RAILS_ENV="test"
       # Add or replace test runners here
       - name: Run tests
-        run: bundle exec rspec
+        run: docker-compose exec web bundle exec rspec
+      - name: Down Docker
+        run: docker-compose down
 
   lint:
     runs-on: ubuntu-latest
