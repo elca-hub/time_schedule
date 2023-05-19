@@ -12,21 +12,6 @@ on:
     branches: [ "main" ]
 jobs:
   test:
-    services:
-      db:
-        image: mysql:8.0
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_ROOT_PASSWORD: root_password
-          MYSQL_DATABASE: foo
-          MYSQL_USER: user1
-          MYSQL_PASSWORD: user1_password
-        options: >-
-          --health-cmd "mysqladmin ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -36,6 +21,12 @@ jobs:
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
           bundler-cache: true
+      - name: Build db
+        run: docker-compose build db
+      - name: Compose db
+        run: docker-compose up -d db
+      - name: sleep for waiting launch db
+        run: sleep 1m
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:migrate RAILS_ENV="test"
