@@ -12,9 +12,9 @@ services:
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
-      interval: 30s
+      interval: 20s
       retries: 10
-      start_period: 40s
+      start_period: 30s
   web:
     build: .
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
