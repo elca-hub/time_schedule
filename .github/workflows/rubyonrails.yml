@@ -22,7 +22,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Run Docker
-        run: docker-compose up db -d
+        run: docker-compose up -d
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:migrate RAILS_ENV="test"
