@@ -25,12 +25,12 @@ jobs:
       - name: Open Docker
         run: docker-compose up -d
       - name: db:create
-        run: docker-compose exec web bin/rails db:create
+        run: docker-compose exec -T web bin/rails db:create
       - name: Set up database schema
-        run: docker-compose exec web bin/rails db:migrate RAILS_ENV="test"
+        run: docker-compose exec -T web bin/rails db:migrate RAILS_ENV="test"
       # Add or replace test runners here
       - name: Run tests
-        run: docker-compose exec web bundle exec rspec
+        run: docker-compose exec -T web bundle exec rspec
       - name: Down Docker
         run: docker-compose down
 
