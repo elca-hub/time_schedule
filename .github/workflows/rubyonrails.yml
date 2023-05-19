@@ -26,7 +26,7 @@ jobs:
         run: bin/rails db:migrate RAILS_ENV="test"
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rails test
+        run: bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest
