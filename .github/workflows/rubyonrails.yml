@@ -24,6 +24,8 @@ jobs:
       # Add or replace database setup steps here
       - name: Open Docker
         run: docker-compose up -d
+      - name: sleep for waiting launch db  # ここを追加
+        run: sleep 1m
       - name: db:create
         run: docker-compose exec -T web bin/rails db:create
       - name: Set up database schema
