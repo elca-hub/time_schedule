@@ -34,7 +34,7 @@ jobs:
         run: bundle install --jobs 4 --retry 3
       - name: Create database
         env:
-          DB_HOST: localhost
+          DB_HOST: db
           DB_PASSWORD: password
           DB_USER: root
         run: |
