@@ -22,16 +22,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
-        with:
-          bundler-cache: true
+      - name: Set up yarn and node
+        run: |
+          apt update -y && apt install apt-transport-https -y
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+          curl -sL https://deb.nodesource.com/setup_12.x | bash -
+          apt install -y yarn nodejs
       # Add or replace database setup steps here
       - name: Run bundle install
         run: bundle install --jobs 4 --retry 3
       - name: Create database
         env:
-          DB_HOST: db
+          DB_HOST: localhost
           DB_PASSWORD: password
           DB_USER: root
         run: |
