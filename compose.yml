@@ -21,6 +21,7 @@ services:
     environment:
       DB_USER: root
       DB_PASSWORD: password
+      DB_HOST: db
     volumes:
       - .:/myapp
     ports:

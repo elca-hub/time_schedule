@@ -30,6 +30,10 @@ jobs:
       - name: Run bundle install
         run: bundle install --jobs 4 --retry 3
       - name: Create database
+        env:
+          DB_HOST: localhost
+          DB_PASSWORD: password
+          DB_USER: root
         run: |
           bin/rails db:create RAILS_ENV=test
           bin/rails db:migrate RAILS_ENV=test
