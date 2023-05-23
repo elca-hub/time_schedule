@@ -22,7 +22,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
           BIND_ADDRESS: 0.0.0.0
     env:
-      DB_HOST: db
+      DB_HOST: localhost
       DB_PASSWORD: password
       DB_USER: root
       RAILS_ENV: test
