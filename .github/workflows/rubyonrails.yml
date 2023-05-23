@@ -13,6 +13,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,17 +27,15 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace database setup steps here
-      - name: Open Docker
-        run: docker-compose up -d
-      - name: db:create
-        run: docker-compose exec -T web bin/rails db:create
-      - name: Set up database schema
-        run: docker-compose exec -T web bin/rails db:migrate RAILS_ENV="test"
+      - name: Run bundle install
+        run: bundle install --jobs 4 --retry 3
+      - name: Create database
+        run: |
+          bin/rails db:create
+          bin/rails db:migrate RAILS_ENV=test
       # Add or replace test runners here
       - name: Run tests
-        run: docker-compose exec -T web bundle exec rspec
-      - name: Down Docker
-        run: docker-compose down
+        run: bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest
