@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     services:
       db:
-        image: mysql:5.7
+        image: mysql:8.0
         ports:
           - 3306:3306
         env:
           MYSQL_ROOT_PASSWORD: password
           BIND_ADDRESS: 0.0.0.0
     env:
-      DB_HOST: 127.0.0.1
+      DB_HOST: db
       DB_PASSWORD: password
       DB_USER: root
       RAILS_ENV: test
