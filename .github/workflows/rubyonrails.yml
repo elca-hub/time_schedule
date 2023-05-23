@@ -21,6 +21,10 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           BIND_ADDRESS: 0.0.0.0
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PASSWORD: password
+      DB_USER: root
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -33,17 +37,11 @@ jobs:
       - name: Run bundle install
         run: bundle install --jobs 4 --retry 3
       - name: Create database
-        env:
-          DB_HOST: 127.0.0.1
-          DB_PASSWORD: password
-          DB_USER: root
         run: |
           bin/rails db:create RAILS_ENV=test
           bin/rails db:migrate RAILS_ENV=test
       # Add or replace test runners here
       - name: Run tests
-        env:
-          DB_HOST: 127.0.0.1
         run: bundle exec rspec
 
   lint:
