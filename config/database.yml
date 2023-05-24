@@ -14,7 +14,7 @@ default: &default
 
 development:
   <<: *default
-  database: db/development
+  database: time_schedule_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,4 +25,4 @@ test:
 
 production:
   <<: *default
-  database: db/production
+  database: time_schedule_production
