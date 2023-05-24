@@ -13,6 +13,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          BIND_ADDRESS: 0.0.0.0
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PASSWORD: password
+      DB_USER: root
+      RAILS_ENV: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,11 +35,15 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace database setup steps here
-      - name: Set up database schema
-        run: bin/rails db:migrate RAILS_ENV="test"
+      - name: Run bundle install
+        run: bundle install --jobs 4 --retry 3
+      - name: Create database
+        run: |
+          bin/rails db:create
+          bin/rails db:migrate
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rails test
+        run: bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest
