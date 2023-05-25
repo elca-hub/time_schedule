@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
   
           is_expected.not_to be_valid
         end
-      end  
+      end
     end
     
     describe "password" do
@@ -88,6 +88,5 @@ RSpec.describe User, type: :model do
         end
       end
     end
-    
   end
 end
