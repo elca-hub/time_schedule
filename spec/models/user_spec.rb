@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let!(:user) { create(:user) }
+  let(:user) { build(:user) }
   subject { user } 
 
   describe "バリデーション関連" do
