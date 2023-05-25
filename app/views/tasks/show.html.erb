@@ -12,6 +12,9 @@
 <%= @task.content %>
 </div>
 
-<%= link_to "タスクを更新する", edit_task_path(@task.id) %>
+<div class="text-center">
+    <%= link_to "タスクを更新する", edit_task_path(@task.id), class: "btn btn-outline-success" %>
+    <%= button_to "削除", task_path(@task.id), class: "btn btn-danger my-4", method: :delete %>
+</div>
 
 <% end %>
