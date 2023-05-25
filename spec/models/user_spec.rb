@@ -88,5 +88,14 @@ RSpec.describe User, type: :model do
         end
       end
     end
+
+    context "重複しているメールアドレスが登録される場合" do
+      before do
+        create(:user, email: user.email)
+      end
+      it '無効' do
+        is_expected.not_to be_valid
+      end
+    end
   end
 end
