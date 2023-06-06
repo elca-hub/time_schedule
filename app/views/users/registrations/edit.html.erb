@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="mb-3">
+    <%= f.label :name, class: "form-label" %>
+    <%= f.text_field :name, autocomplete: "text", class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
     <%= f.label :password, class: "form-label" %>
     <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     <% if @minimum_password_length %>
