@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   scope '/users' do
     resources :tasks
+    resources :tags
   end
 end

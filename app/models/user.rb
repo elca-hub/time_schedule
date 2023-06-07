@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :task, dependent: :destroy
+  has_many :tag, dependent: :destroy
 
   validates :name, length: {maximum:100}, presence: true
   validates :email, presence: true, uniqueness: true
