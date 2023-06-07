@@ -1,18 +1,39 @@
-<header class="text-center">
-    <h1>タスク一覧</h1>
-    <p><%= @user.name %>さんのタスク数 : <%= @tasks.length %></p>
-</header>
+<div class="monitor-center">
+    <div>
+        <header class="text-center">
+            <h1>タスク一覧</h1>
+        </header>
+        <div class="task-list-box">
+        <% @user.tags.each do |tag| %>
+            <div class="tag-box">
+                <div class="tag-button-box">
+                    <a
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse-<%= tag.name %>"
+                        aria-expanded="false"
+                        aria-controls="collapse-<%= tag.name %>"
+                    >
+                        <%= tag.name %>
+                    </a>
+                </div>
+                <div style="min-height: 3rem;">
+                  <div class="collapse collapse-horizontal" id="collapse-<%= tag.name %>">
+                    <div class="card card-body w-100">
+                        <ol>
+                        <% tag.tasks.each do |task| %>
+                            <li><%= link_to task.title, task_path(task.id) %></li>
+                        <% end %>
+                        </ol>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        <% end %>
 
-<div class="center-layout">
-    <ol class="user-task-list my-4">
-        <% @tasks.each do |task| %>
-            <li><%= link_to task.title, task_path(task.id) %></li>
-      <% end %>
-    </ol>
-
-    <div class="text-center mt-4">
-        <%= link_to "新しくタスクを作成する", new_task_path, class: "btn btn-outline-success" %>
-        <%= link_to "タグを作成する", new_tag_path, class: "btn btn-outline-secondary" %>
-        <%= link_to "戻る", users_path, class: "btn btn-outline-primary" %>
+        <div class="text-center mt-4">
+            <%= link_to "新しくタスクを作成する", new_task_path, class: "btn btn-outline-success" %>
+            <%= link_to "タグを作成する", new_tag_path, class: "btn btn-outline-secondary" %>
+            <%= link_to "戻る", users_path, class: "btn btn-outline-primary" %>
+        </div>
     </div>
 </div>
