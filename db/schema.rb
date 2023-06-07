@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_141550) do
 
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "user_id", null: false
+    t.string "tag_id"
     t.string "title", null: false
     t.string "content", null: false
     t.boolean "is_done", default: false, null: false
