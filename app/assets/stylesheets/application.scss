@@ -187,4 +187,16 @@ header.header {
             }
         }
     }
+
+    .tag-description-box {
+        color: #666;
+        margin-bottom: 1rem;
+        h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+        p {
+            font-size: 0.8rem;
+        }
+    }
 }

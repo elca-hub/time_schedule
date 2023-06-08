@@ -32,6 +32,10 @@
                 <div style="min-height: 3rem;">
                   <div class="collapse collapse-horizontal" id="collapse-<%= tag.name %>">
                     <div class="card card-body w-100">
+                        <div class="tag-description-box">
+                            <h4>description</h4>
+                            <p><%= tag.description %></p>
+                        </div>
                         <ol>
                         <% tag.tasks.each do |task| %>
                             <li><%= link_to task.title, task_path(task.id) %></li>
