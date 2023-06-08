@@ -33,6 +33,12 @@ class TagsController < ApplicationController
 
     redirect_to tasks_path
   end
+
+  def destroy
+    tag = Tag.find(params[:id])
+    tag.destroy
+    redirect_to tasks_path
+  end
   
 
   private
