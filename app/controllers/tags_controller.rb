@@ -5,8 +5,6 @@ class TagsController < ApplicationController
   def new
     @tag = Tag.new
 
-    @error_hash = get_view_error
-
     # カラーコードをランダムに生成
     @color_code = "#" + SecureRandom.hex(3)
   end

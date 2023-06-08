@@ -16,6 +16,6 @@ module ErrorMessage
         res = session[:error_hash]
         session[:error_hash] = nil
 
-        return res
+        @error_hash = res
     end
 end
