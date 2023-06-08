@@ -23,6 +23,7 @@ class TasksController < ApplicationController
       @task.user_id  = user.id
 
       if @task.save
+        set_view_error("success", "タスク作成完了", "タスクの作成が完了しました。")
 		    redirect_to tasks_path
       end
     end
