@@ -29,9 +29,14 @@
                         </p>
                     </a>
                 </div>
-                <div style="min-height: 3rem;">
+                <div style="min-height: 3rem;" class="mb-4">
                   <div class="collapse collapse-horizontal" id="collapse-<%= tag.name %>">
                     <div class="card card-body w-100">
+                        <div class="tag-setting-box">
+                            <%= link_to edit_tag_path(tag.id) do %>
+                                <i class="bi bi-gear me-1"></i>設定画面へ
+                            <% end %>
+                        </div>
                         <div class="tag-description-box">
                             <h4>description</h4>
                             <p><%= tag.description %></p>
