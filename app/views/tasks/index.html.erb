@@ -20,7 +20,8 @@
                         aria-expanded="false"
                         aria-controls="collapse-<%= tag.name %>"
                     >
-                        <%= tag.name %>
+                        <div class="tag-outer-frame-box" style="border-color: <%= tag.color_code %>; background-color: <%= tag.color_code %>;"></div>
+                        <p><%= tag.name %></p>
                     </a>
                 </div>
                 <div style="min-height: 3rem;">
