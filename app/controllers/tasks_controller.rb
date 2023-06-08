@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+    include ErrorMessage
     before_action :authenticate_user!
 
     def index
@@ -7,6 +8,12 @@ class TasksController < ApplicationController
 
     def new
       @task = Task.new
+      @tags = Tag.all
+
+      if @tags.length == 0
+        set_view_error("warning", "タグが登録されていません。", "タグを登録してからタスクを作成してください。")
+        redirect_to new_tag_path
+      end
     end
 
     def create
@@ -16,7 +23,7 @@ class TasksController < ApplicationController
       @task.user_id  = user.id
 
       if @task.save
-		    		redirect_to tasks_path
+		    redirect_to tasks_path
       end
     end
 
@@ -53,7 +60,7 @@ class TasksController < ApplicationController
 
     private
     	def task_params
-    		params.require(:task).permit(:title, :content)
+    		params.require(:task).permit(:title, :content, :tag_id)
     	end
 end
   
