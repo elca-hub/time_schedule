@@ -21,7 +21,12 @@
                         aria-controls="collapse-<%= tag.name %>"
                     >
                         <div class="tag-outer-frame-box" style="border-color: <%= tag.color_code %>; background-color: <%= tag.color_code %>;"></div>
-                        <p><%= tag.name %></p>
+                        <p>
+                            <%= tag.name %>
+                            <span class="badge rounded-pill bg-danger">
+                                <%= tag.tasks.length %>
+                            </span>
+                        </p>
                     </a>
                 </div>
                 <div style="min-height: 3rem;">
