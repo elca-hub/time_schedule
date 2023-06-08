@@ -178,7 +178,8 @@ header.header {
                 position: absolute;
                 border-radius: 10px;
                 background-color: cadetblue;
-                transition: background-color .2s, width .5s ease-out;
+                z-index: -1;
+                transition: all .5s ease-out;
             }
 
             p {
