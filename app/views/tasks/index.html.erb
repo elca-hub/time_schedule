@@ -3,6 +3,13 @@
         <header class="text-center">
             <h1>タスク一覧</h1>
         </header>
+
+        <div class="text-center mb-4">
+            <%= link_to "新しくタスクを作成する", new_task_path, class: "btn btn-outline-success" %>
+            <%= link_to "タグを作成する", new_tag_path, class: "btn btn-outline-secondary" %>
+            <%= link_to "戻る", users_path, class: "btn btn-outline-primary" %>
+        </div>
+
         <div class="task-list-box">
         <% @user.tags.each do |tag| %>
             <div class="tag-box">
@@ -29,11 +36,5 @@
                 </div>
             </div>
         <% end %>
-
-        <div class="text-center mt-4">
-            <%= link_to "新しくタスクを作成する", new_task_path, class: "btn btn-outline-success" %>
-            <%= link_to "タグを作成する", new_tag_path, class: "btn btn-outline-secondary" %>
-            <%= link_to "戻る", users_path, class: "btn btn-outline-primary" %>
-        </div>
     </div>
 </div>
