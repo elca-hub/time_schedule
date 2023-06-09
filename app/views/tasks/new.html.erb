@@ -6,14 +6,24 @@
 <%= form_with url: tasks_path do |form| %>
   <div style="margin: auto 10rem;">
     <div class="mb-3">
-      <label for="task_title" class="form-label">タイトル</label><br>
+      <label for="task_title" class="form-label">タイトル</label>
       <input type="text" name="task[title]" id="task_title" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="task_tag" class="form-label">タグ</label>
+      <select class="form-select" aria-label="Default select example" name="task[tag_id]">
+        <% @tags.each do |tag| %>
+          <option value="<%= tag.id %>"><%= tag.name %></option>
+        <% end %>
+      </select>
     </div>
     
     <div class="form-floating mb-3">
       <textarea class="form-control" placeholder="記事の内容を書いてください" id="task_content" name="task[content]"></textarea>
       <label for="task_content">内容</label>
     </div>
+
 
     <div class="mb-3 text-center">
       <input class="btn btn-outline-success" type="submit" name="commit" value="タスクを追加" data-disable-with="タスクを追加">

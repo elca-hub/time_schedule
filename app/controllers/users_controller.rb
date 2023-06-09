@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-	include ErrorMessage
-	
 	before_action :authenticate_user!
 
 	def index

@@ -1,0 +1,27 @@
+<header class="text-center">
+    <h1>タグの追加</h1>
+    <p>タグの新規追加を行います。</p>
+</header>
+
+<%= form_with url: tags_path do |form| %>
+  <div style="margin: auto 10rem;">
+    <div class="mb-3">
+      <label for="tag_name" class="form-label">名前</label><br>
+      <input type="text" name="tag[name]" id="tag_name" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="tag_color" class="form-label">タグの色</label>
+      <input type="color" name="tag[color_code]" id="tag_color" class="form-control" value="<%= @color_code %>">
+    </div>
+
+    <div class="form-floating mb-3">
+      <textarea class="form-control" placeholder="タグの説明を入力してください" id="tag_description" name="tag[description]"></textarea>
+      <label for="tag_description">タグの説明（任意）</label>
+    </div>
+
+    <div class="mb-3 text-center">
+      <input class="btn btn-outline-success" type="submit" name="commit" value="タグを追加" data-disable-with="タグを追加">
+    </div>
+  </div>
+<% end %>
