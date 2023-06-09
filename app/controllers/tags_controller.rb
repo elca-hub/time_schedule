@@ -1,5 +1,4 @@
 class TagsController < ApplicationController
-  include ErrorMessage
   before_action :authenticate_user!
 
   def new
