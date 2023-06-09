@@ -48,25 +48,25 @@ RSpec.describe Task, type: :model do
 
     describe "内容" do
       context "内容が空の場合" do
-        it '無効' do
+        it '有効' do
           task.content = ""
 
-          is_expected.not_to be_valid
+          is_expected.to be_valid
         end
       end
     end
 
-    context "内容が255文字以下の場合" do
+    context "内容が500文字以下の場合" do
       it '有効' do
-        task.content = "a" * 255
+        task.content = "a" * 500
 
         is_expected.to be_valid
       end
     end
 
-    context "内容が256文字以上の場合" do
+    context "内容が501文字以上の場合" do
       it '無効' do
-        task.content = "a" * 256
+        task.content = "a" * 501
 
         is_expected.not_to be_valid
       end
