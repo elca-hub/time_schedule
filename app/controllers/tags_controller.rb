@@ -6,10 +6,7 @@ class TagsController < ApplicationController
   end
 
   def create
-  	@tag = Tag.new(tag_params)
-	  user = current_user
-
-    @tag.user_id = user.id
+  	@tag = Tag.new(tag_params.merge(user_id: current_user.id))
 
     if @tag.save
 		  		redirect_to tasks_path
