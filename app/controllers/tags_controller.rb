@@ -2,10 +2,7 @@ class TagsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @tag = Tag.new
-
-    # カラーコードをランダムに生成
-    @color_code = "#" + SecureRandom.hex(3)
+    @tag = Tag.new(color_code: "##{SecureRandom.hex(3)}")
   end
 
   def create
