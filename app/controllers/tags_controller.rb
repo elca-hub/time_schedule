@@ -14,11 +14,11 @@ class TagsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.find(params[:id])
+    @tag = Tag.find_by(id: params[:id], user: current_user)
   end
 
   def update
-    @tag = Tag.find(params[:id])
+    @tag = Tag.find_by(id: params[:id], user: current_user)
 
 		@tag.update(tag_params)
 
