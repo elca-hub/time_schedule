@@ -9,7 +9,7 @@ class TagsController < ApplicationController
   	@tag = Tag.new(tag_params.merge(user_id: current_user.id))
 
     if @tag.save
-		  		redirect_to tasks_path
+		  redirect_to tasks_path
     end
   end
 
