@@ -27,6 +27,11 @@
     </div>
 
     <div class="mb-3">
+      <%= f.label :icon, class: "form-label" %>
+      <%= f.file_field :icon, class:"form-control" %>
+    </div>
+
+    <div class="mb-3">
       <%= f.submit "新規登録", class: "btn btn-outline-primary" %>
     </div>
   <% end %>

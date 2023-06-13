@@ -31,6 +31,11 @@
   </div>
 
   <div class="mb-3">
+    <%= f.label :icon, class: "form-label" %>
+    <%= f.file_field :icon, class:"form-control" %>
+  </div>
+
+  <div class="mb-3">
     <%= f.label :current_password, class: "form-label" %>
     <div class="form-text">現在のパスワードを入力してください。</div>
     <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>

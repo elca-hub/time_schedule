@@ -131,11 +131,11 @@ header.header {
     flex-direction: column;
     margin-bottom: 2rem;
 
-    .user-img-temp-box {
-        background: lightslategray;
+    .user-img-box {
         width: 100px;
         height: 100px;
         border-radius: 50%;
+        object-fit: cover;
     }
 }
 
