@@ -1,9 +1,12 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-<div class="sign-in-sign-up-box">
-  <h2 class="text-center">ユーザの登録情報変更</h2>
+<h1 class="text-center my-4">
+  ユーザの登録情報変更
+</h1>
 
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <div class="mb-3">
-    <%= f.label :email, class: "form-label" %>
+    <%= f.label :email, class: "form-label" do %>
+      メールアドレス
+    <% end %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
 
@@ -12,12 +15,16 @@
   <% end %>
 
   <div class="mb-3">
-    <%= f.label :name, class: "form-label" %>
+    <%= f.label :name, class: "form-label" do %>
+      ユーザー名
+    <% end %>
     <%= f.text_field :name, autocomplete: "text", class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= f.label :password, class: "form-label" %>
+    <%= f.label :password, class: "form-label" do %>
+      パスワード
+    <% end %>
     <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     <% if @minimum_password_length %>
       <div class="form-text">パスワードを変更しない場合は空欄にしてください。</div>
@@ -26,30 +33,36 @@
   </div>
 
   <div class="mb-3">
-    <%= f.label :password_confirmation, class: "form-label" %>
+    <%= f.label :password_confirmation, class: "form-label" do %>
+      パスワード（確認用）
+    <% end %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= f.label :icon, class: "form-label" %>
+    <%= f.label :icon, class: "form-label" do %>
+      アイコン
+    <% end %>
     <%= f.file_field :icon, class:"form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= f.label :current_password, class: "form-label" %>
+    <%= f.label :current_password, class: "form-label" do %>
+      現在のパスワード
+    <% end %>
     <div class="form-text">現在のパスワードを入力してください。</div>
     <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
   </div>
 
-  <div class="text-center">
-    <%= f.submit "変更する", class: "btn btn-success" %>
+  <div class="text-center my-4">
+    <%= f.submit "変更する", class: "btn btn-outline-success w-100" %>
   </div>
 <% end %>
 
-<h3 class="mt-4">アカウントの削除</h3>
+<h2 class="text-center my-4 text-danger"><i class="bi bi-person-x-fill se-2"></i>アカウントの削除</h2>
 
-<div><%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当にアカウントを削除しますか？", turbo_confirm: "本当にアカウントを削除しますか？" }, method: :delete, class: "btn btn-danger" %></div>
+<%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当にアカウントを削除しますか？", turbo_confirm: "本当にアカウントを削除しますか？" }, method: :delete, class: "btn btn-danger w-100" %>
 
-<%= link_to "戻る", :back %>
-
+<div class="my-4 text-center">
+  <%= link_to "戻る", :back %>
 </div>

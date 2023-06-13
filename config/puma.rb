@@ -17,7 +17,7 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 if ENV.fetch("RAILS_ENV", "production") == "production"
     bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
 else
-    ENV.fetch(port ENV.fetch("PORT") { 3000 })
+    port ENV.fetch("PORT") { 3000 }
 end
 
 # Specifies the `environment` that Puma will run in.
