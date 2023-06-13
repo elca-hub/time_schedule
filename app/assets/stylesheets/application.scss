@@ -97,3 +97,8 @@ body {
     }
 }
 
+@media screen and (max-width: 767px) {
+    .input-form {
+        width: 96vw;
+    }
+}
