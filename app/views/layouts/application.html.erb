@@ -11,7 +11,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="d-flex align-items-center justify-content-center" style="min-height: 100vh; max-width: 100vw;">
+  <body class="d-flex align-items-center justify-content-center" style="height: 100vh;">
     <% if !@error_hash.nil? %>
     <div class="alert alert-<%= @error_hash["type"] %> alert-dismissible fade show" role="alert">
       <strong><%= @error_hash["title"] %></strong> <%= @error_hash["message"] %>
