@@ -2,7 +2,7 @@
   タグの更新
 </h1>
   
-  <%= form_with url: tag_path(@tag.id), method: :put  do |form| %>
+<%= form_with url: tag_path(@tag.id), method: :put, class: 'input-form'  do |form| %>
   <div class="mb-3">
     <label for="tag_name" class="form-label">タグ名</label><br>
     <input type="text" name="tag[name]" id="tag_name" class="form-control" value="<%= @tag.name %>">
@@ -18,9 +18,9 @@
     <label for="tag_description">説明</label>
   </div>
 
-<div class="mb-3 text-center">
-  <input class="btn btn-outline-success" type="submit" name="commit" value="タグを更新" data-disable-with="タグを更新">
-</div>
+  <div class="mb-3 text-center">
+    <input class="btn btn-outline-success" type="submit" name="commit" value="タグを更新" data-disable-with="タグを更新">
+  </div>
 <% end %>
 
 <div class="text-center mt-4">
