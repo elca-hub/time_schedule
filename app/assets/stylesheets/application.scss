@@ -75,6 +75,7 @@ body {
             position: absolute;
             border-radius: 10px;
             background-color: cadetblue;
+            z-index: 1000;
             transition: all .5s ease-out;
         }
 
