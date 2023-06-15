@@ -27,6 +27,7 @@ body {
     font-family: 'lineseedJP', sans-serif;
 }
 
+/* ユーザのプロフィールアイコン */
 .user-profile-icon {
     width: 50%;
     height: auto;
@@ -34,6 +35,7 @@ body {
     border: solid 1px #333;
 }
 
+/* ユーザ名の表示 */
 .profile-user-name {
     border-bottom: solid 2px #333;
 }
@@ -43,12 +45,10 @@ body {
     margin: auto;
 }
 
+/* タグやタスクの更新、作成などに使用されるformをいい感じにしてくれるやつ */
 .input-form {
     width: 80vw;
 }
-
-/* controller */
-/* クラスの命名の法則は「.[controller_name].[action_name]」 */
 
 .tag-button-box {
     a {
