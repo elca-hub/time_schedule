@@ -2,29 +2,23 @@ class TagsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @tag = Tag.new
-
-    # カラーコードをランダムに生成
-    @color_code = "#" + SecureRandom.hex(3)
+    @tag = Tag.new(color_code: "##{SecureRandom.hex(3)}")
   end
 
   def create
-  	@tag = Tag.new(tag_params)
-	  user = current_user
-
-    @tag.user_id = user.id
+  	@tag = Tag.new(tag_params.merge(user_id: current_user.id))
 
     if @tag.save
-		  		redirect_to tasks_path
+		  redirect_to tasks_path
     end
   end
 
   def edit
-    @tag = Tag.find(params[:id])
+    @tag = Tag.find_by(id: params[:id], user: current_user)
   end
 
   def update
-    @tag = Tag.find(params[:id])
+    @tag = Tag.find_by(id: params[:id], user: current_user)
 
 		@tag.update(tag_params)
 

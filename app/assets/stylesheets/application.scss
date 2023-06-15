@@ -16,132 +16,28 @@
 
 
 /* 共通 */
-
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap');
+@font-face {
+    font-family: 'lineseedJP';
+    src: font-url('../assets/LINESeedJP_A_TTF_Rg.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
-    font-family: 'Zen Kurenaido', sans-serif;
+    font-family: 'lineseedJP', sans-serif;
 }
 
-footer.copyright {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    p, a {
-        color: #333;
-        a {
-            display: inline-block;
-            transition: all 0.5s ease-out;
-            &:hover {
-                transform: scale(1.2);
-                color: #777;
-            }
-        }
-    }
-    span {
-        font-size: 1.1rem;
-        margin-right: 10px;
-        margin-left: 10px;
-    }
+/* ユーザのプロフィールアイコン */
+.user-profile-icon {
+    width: 50%;
+    height: auto;
+    border-radius: 50%;
+    border: solid 1px #333;
 }
 
-header {
-    margin-top: 2rem;
-}
-
-.application-page {
-    position: relative;
-    min-height: 100vh;
-}
-
-p.register-text {
-    font-size: 0.75rem;
-    color: #777;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    a {
-        font-size: 1rem;
-    }
-}
-
-.center-layout {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: max-content;
-}
-
-.monitor-center {
-    height: 100vh;
-    max-height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* homes/index */
-
-main.main-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-}
-
-header.header {
-    h1 {
-        font-size: 3rem;
-    }
-    p {
-        color: #333;
-    }
-}
-
-/* users/show */
-
-.user-not-found-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: max-content;
-    text-align: center;
-}
-
-/* sign_in、sign_up時のformのレイアウト */
-
-.sign-in-sign-up-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: max-content;
-}
-
-/* users/index */
-/* ユーザ画像、ユーザ名の表示 */
-.user-home-info-box {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 2rem;
-
-    .user-img-temp-box {
-        background: lightslategray;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-    }
-}
-
-.user-action-list-box {
-    margin: auto 10rem;
-    text-align: center;
+/* ユーザ名の表示 */
+.profile-user-name {
+    border-bottom: solid 2px #333;
 }
 
 .user-task-list {
@@ -149,55 +45,59 @@ header.header {
     margin: auto;
 }
 
-/* controller */
-/* クラスの命名の法則は「.[controller_name].[action_name]」 */
+/* タグやタスクの更新、作成などに使用されるformをいい感じにしてくれるやつ */
+.input-form {
+    width: 80vw;
+}
 
-.tasks_index {
-    .tag-button-box {
-        a {
-            padding: 0;
-            border-radius: 0.4rem;
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            font-size: 1.5rem;
-            text-decoration: none;
-            position: relative;
-            &:hover {
-                cursor: pointer;
-                .tag-outer-frame-box {
-                    width: 100%;
-                    background-color: rgba(0, 0, 0, 0)!important; /* styleで指定されているカラーコードに上書きしたいためimportant */
-                }
-            }
-
+.tag-button-box {
+    a {
+        padding: 0;
+        border-radius: 0.4rem;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+        text-decoration: none;
+        position: relative;
+        &:hover {
+            cursor: pointer;
             .tag-outer-frame-box {
-                border: solid 2px cadetblue;
-                width: 10px;
-                height: 100%;
-                position: absolute;
-                border-radius: 10px;
-                background-color: cadetblue;
-                z-index: -1;
-                transition: all .5s ease-out;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0)!important; /* styleで指定されているカラーコードに上書きしたいためimportant */
             }
+        }
 
-            p {
-                margin: .2rem;
-                color: #000;
-            }
+        .tag-outer-frame-box {
+            border: solid 2px cadetblue;
+            width: 10px;
+            height: 100%;
+            position: absolute;
+            border-radius: 10px;
+            background-color: cadetblue;
+            z-index: 1000;
+            transition: all .5s ease-out;
+        }
+
+        p {
+            margin: .2rem;
         }
     }
+}
 
-    .tag-description-box {
-        color: #666;
-        margin-bottom: 1rem;
-        h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0;
-        }
-        p {
-            font-size: 0.8rem;
-        }
+.tag-description-box {
+    margin-bottom: 1rem;
+    h4 {
+        font-size: 1.3rem;
+        margin-bottom: 0;
+    }
+    p {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .input-form {
+        width: 96vw;
     }
 }

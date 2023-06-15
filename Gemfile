@@ -62,9 +62,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-end
 
-group :development do
   gem 'bundler-audit'
   gem 'brakeman'
 end
@@ -76,6 +74,13 @@ group :test do
   gem "webdrivers"
 end
 
+gem 'dotenv-rails'
+
 gem "devise", "~> 4.9.2"
 
 gem "mysql2", "~> 0.5.5"
+
+gem "fog-aws"
+gem 'carrierwave', '~> 2.0'
+
+gem 'mini_magick'
