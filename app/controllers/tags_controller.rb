@@ -32,7 +32,7 @@ class TagsController < ApplicationController
   def destroy
     tag = Tag.find(params[:id])
     tag.destroy
-    redirect_to tasks_path
+    redirect_to tasks_path, notice: "タグの削除が完了しました。"
   end
   
 
