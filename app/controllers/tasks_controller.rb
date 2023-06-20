@@ -42,7 +42,7 @@ class TasksController < ApplicationController
 
 		@task.update(task_params)
 
-    redirect_to @task
+    redirect_to @task, notice: "タスクの編集が完了しました。"
     end
 
     def show
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
 
       @task.destroy
 
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: "タスクの削除が完了しました。"
     end
 
     private
