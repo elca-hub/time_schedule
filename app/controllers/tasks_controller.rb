@@ -7,11 +7,10 @@ class TasksController < ApplicationController
 
     def new
       @task = Task.new
-      @tags = Tag.all
+      @tags = Tag.where(user_id: current_user.id)
 
-      if @tags.length == 0
-        set_view_error("warning", "タグが登録されていません。", "タグを登録してからタスクを作成してください。")
-        redirect_to new_tag_path
+      if @tags.nil?
+        redirect_to new_tag_path, alert: ["タグを作成してからタスクを作成してください。"]
       end
     end
 
@@ -22,8 +21,9 @@ class TasksController < ApplicationController
       @task.user_id  = user.id
 
       if @task.save
-        set_view_error("success", "タスク作成完了", "タスクの作成が完了しました。")
-		    redirect_to tasks_path
+		    redirect_to tasks_path, notice: "タスクの作成が完了しました。"
+      else
+        redirect_to new_task_path, alert: @task.errors.full_messages
       end
     end
 
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
 
 		@task.update(task_params)
 
-    redirect_to @task
+    redirect_to @task, notice: "タスクの編集が完了しました。"
     end
 
     def show
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
 
       @task.destroy
 
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: "タスクの削除が完了しました。"
     end
 
     private

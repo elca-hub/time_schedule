@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
-  include ErrorMessage
   before_action :configure_permitted_parameters, if: :devise_controller? 
-  before_action :get_view_error
   before_action :is_dark_mode
 
   def after_sign_in_path_for(resource)
