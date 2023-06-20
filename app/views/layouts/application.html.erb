@@ -33,7 +33,8 @@
 
     <% if alert %>
     <div class="alert alert-danger alert-dismissible fade show error-alert" role="alert">
-      <% if alert.class == 'Array' %>
+      <% if alert.class == Array %>
+        <string>エラー</string>
         <% alert.each do |message| %>
           <li><%= message %></li>
         <% end %>
