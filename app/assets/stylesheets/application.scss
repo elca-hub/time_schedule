@@ -50,6 +50,13 @@ body {
     width: 80vw;
 }
 
+.error-alert, .success-alert {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
 .tag-button-box {
     a {
         padding: 0;

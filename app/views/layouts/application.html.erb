@@ -13,28 +13,40 @@
   </head>
 
   <body class="d-flex align-items-center justify-content-center m-0 p-0" style="min-height: 100vh;min-height: 100dvh;">
-    <% if !@error_hash.nil? %>
-    <div class="alert alert-<%= @error_hash["type"] %> alert-dismissible fade show" role="alert">
-      <strong><%= @error_hash["title"] %></strong> <%= @error_hash["message"] %>
+    <% if !(defined? resource).nil? && resource.errors.any? %>
+      <div class="alert alert-danger alert-dismissible fade show error-alert" role="alert">
+        <strong>
+          <%= I18n.t(
+            "errors.messages.not_saved",
+            count: resource.errors.count,
+            resource: resource.class.model_name.human.downcase)
+          %>
+        </strong>
+        <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+
+    <% if alert %>
+    <div class="alert alert-danger alert-dismissible fade show error-alert" role="alert">
+      <% if alert.class == 'Array' %>
+        <% alert.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% else %>
+        <%= alert %>
+      <% end %>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <% end %>
 
-    <%# devise専用のエラーメッセージ %>
-    <% if !(defined? resource).nil? && resource.errors.any? %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>
-        <%= I18n.t(
-          "errors.messages.not_saved",
-          count: resource.errors.count,
-          resource: resource.class.model_name.human.downcase)
-        %>
-      </strong>
-      <ul>
-        <% resource.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <% if notice %>
+    <div class="alert alert-success alert-dismissible fade show success-alert" role="alert">
+      <%= notice %>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <% end %>

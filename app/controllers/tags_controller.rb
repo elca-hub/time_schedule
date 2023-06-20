@@ -9,7 +9,9 @@ class TagsController < ApplicationController
   	@tag = Tag.new(tag_params.merge(user_id: current_user.id))
 
     if @tag.save
-		  redirect_to tasks_path
+		  redirect_to tasks_path, notice: "タグの作成が完了しました。"
+    else
+      redirect_to new_tag_path, alert: @tag.errors.full_messages
     end
   end
 
@@ -20,9 +22,11 @@ class TagsController < ApplicationController
   def update
     @tag = Tag.find_by(id: params[:id], user: current_user)
 
-		@tag.update(tag_params)
-
-    redirect_to tasks_path
+		if @tag.update(tag_params)
+      redirect_to tasks_path, notice: "タグの編集が完了しました。"
+    else
+      redirect_to edit_tag_path(@tag), alert: @tag.errors.full_messages
+    end
   end
 
   def destroy
