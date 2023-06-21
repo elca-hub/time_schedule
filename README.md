@@ -40,6 +40,12 @@ docker compose exec web rails:create
 docker compose exec web rails:migrate
 ```
 
+### メールについて
+
+2023年6月21日以降では、ユーザの新規登録にメール認証が追加されました。メールに関しては以下のURLから閲覧することができます。
+
+[http://localhost:8025](http://localhost:8025)
+
 ## 詳細
 
 ### モデル
