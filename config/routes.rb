@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get "/users/" => "users#index"
 
+  get "/users/send_mail/" => "users#send_mail"
+
   scope '/users' do
     resources :tasks
     resources :tags

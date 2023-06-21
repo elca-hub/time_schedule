@@ -83,6 +83,8 @@ gem "mysql2", "~> 0.5.5"
 gem "fog-aws"
 gem 'carrierwave', '~> 2.0'
 
+gem "aws-sdk-rails"
+
 gem 'mini_magick'
 
 gem 'devise-i18n'

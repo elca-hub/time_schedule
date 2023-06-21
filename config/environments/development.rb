@@ -8,8 +8,6 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -69,4 +67,12 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  
+  # メール配信に関する設定項目
+  config.action_mailer.smtp_settings = {
+    address: "mail",
+    port: 1025
+  }
+  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+  config.action_mailer.delivery_method = :smtp
 end
