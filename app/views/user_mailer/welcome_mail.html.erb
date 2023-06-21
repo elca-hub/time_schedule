@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+        .title {
+            text-align: center;
+        }
+        
+        .title img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+        <h1>ようこそ、<%= @user.name %>さん!</h1>
+        <img src='<%= "#{@root_url}/#{@user.icon.to_s}" %>'>
+    </div>
+    <main>
+        <section>
+            <h2>timeScheduleとは?</h2>
+            <p>
+                開発者である<a href="https://github.com/elca-hub">elca</a>が、railsの勉強をかねて作成した、タスク管理アプリです。
+                元々は時間管理を行うアプリを作成する予定でしたが、時間の関係上、タスク管理アプリとして作成しました。
+            </p>
+        </section>
+        <section>
+            <h2>はじめに</h2>
+            <p>
+                <a href="<%= @root_url %>/users/tags/new">タグ</a>を作成し、タスクを管理してみましょう。
+            </p>
+            <p>
+                ユーザ情報の変更に関しては<a href="<%= @root_url %>/users/edit">こちら</a>から行えます。
+            </p>
+        </section>
+        <section>
+            <h2>注意事項</h2>
+            <p>
+                このアプリはrailsアプリの勉強をかねて作成したものです。
+                そのため、セキュリティ面においては十分な対策がなされていません。
+                個人情報など、漏洩してはいけない情報を登録しないようにお願いします。
+            </p>
+        </section>
+    </main>
+  </body>
+</html>
