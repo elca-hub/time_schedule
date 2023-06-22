@@ -59,6 +59,8 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
   
   # ActionMailer関係の設定
-  Rails.application.routes.default_url_options[:host] = "localhost"
-  config.action_mailer.default_url_options = {host: "localhost"}
+  host_name = "localhost"
+  Rails.application.routes.default_url_options[:host] = host_name
+  config.action_mailer.default_url_options = {host: host_names}
+  config.action_mailer.delivery_method = :smtp
 end
