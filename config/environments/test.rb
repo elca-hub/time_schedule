@@ -61,6 +61,6 @@ Rails.application.configure do
   # ActionMailer関係の設定
   host_name = "localhost"
   Rails.application.routes.default_url_options[:host] = host_name
-  config.action_mailer.default_url_options = {host: host_names}
+  config.action_mailer.default_url_options = {host: host_name}
   config.action_mailer.delivery_method = :smtp
 end
