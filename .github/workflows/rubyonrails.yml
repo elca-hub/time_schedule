@@ -24,8 +24,8 @@ jobs:
       mail:
         image: mailhog/mailhog:latest
         ports:
-          - "8025:8025"
-          - "1025:1025"
+          - 8025:8025
+          - 1025:1025
     env:
       DB_HOST: 127.0.0.1
       DB_PASSWORD: password
