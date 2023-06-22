@@ -63,6 +63,22 @@ RSpec.describe User, type: :model do
           is_expected.to be_valid
         end
       end
+
+      context "パスワードが確認用と一致しない場合" do
+        it '無効' do
+          user.password = "a" * 6
+
+          is_expected.not_to be_valid
+        end
+      end
+
+      context "確認用パスワードが空の場合" do
+        it '無効' do
+          user.password_confirmation = ""
+
+          is_expected.not_to be_valid
+        end
+      end
     end
 
     describe "email" do
