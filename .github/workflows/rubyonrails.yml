@@ -31,6 +31,7 @@ jobs:
       DB_PASSWORD: password
       DB_USER: root
       RAILS_ENV: test
+      IS_ACTION: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
