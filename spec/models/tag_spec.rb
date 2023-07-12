@@ -46,5 +46,31 @@ RSpec.describe Tag, type: :model do
         end
       end
     end
+
+    describe "説明" do
+      context "説明が500文字以下の場合" do
+        it "有効" do
+          tag.description = "a" * 500
+
+          is_expected.to be_valid
+        end
+      end
+
+      context "説明が501文字以上の場合" do
+        it "無効" do
+          tag.description = "a" * 501
+
+          is_expected.not_to be_valid
+        end
+      end
+
+      context "説明が空文字の場合" do
+        it "有効" do
+          tag.description = ""
+
+          is_expected.to be_valid
+        end
+      end
+    end
   end
 end
