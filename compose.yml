@@ -15,6 +15,11 @@ services:
       interval: 20s
       retries: 10
       start_period: 30s
+  mail:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
+      - "1025:1025"
   web:
     build: .
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -32,5 +37,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      mail:
+        condition: service_started
 volumes:
   mysql_volume:

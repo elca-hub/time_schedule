@@ -40,6 +40,13 @@ docker compose exec web rails:create
 docker compose exec web rails:migrate
 ```
 
+### メールについて
+
+2023年6月21日以降では、ユーザの新規登録にメール認証が追加されました。
+
+開発環境では、[mailhog](https://github.com/mailhog/MailHog)によってメールサーバを構築しています。
+メールは[localhost:8025](https://localhost:8025)で閲覧することができます。
+
 ## 詳細
 
 ### モデル

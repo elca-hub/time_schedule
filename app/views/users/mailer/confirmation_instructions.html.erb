@@ -1,5 +1,8 @@
-<p>Welcome <%= @email %>!</p>
+<div style="text-align: center;">
+    <h1>TimeSchedule</h1>
+    <h3>メールのご登録ありがとうございます、<%= @user.name %>さん!</h3>
+</div>
 
-<p>You can confirm your account email through the link below:</p>
+<p>以下のリンクをクリックして登録を完了してください：</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to '登録を完了する', confirmation_url(@resource, confirmation_token: @token) %></p>

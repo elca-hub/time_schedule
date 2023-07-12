@@ -57,4 +57,12 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+  
+  # ActionMailer関係の設定
+  config.action_mailer.smtp_settings = {
+    address: "127.0.0.1",
+    port: 1025
+  }
+  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+  config.action_mailer.delivery_method = :smtp
 end

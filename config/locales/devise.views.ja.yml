@@ -46,6 +46,7 @@ ja:
         too_long: "は%{count}文字以内で入力してください。"
         too_short: "は%{count}文字以上で入力してください。"
         confirmation: "が一致しません。"
+        invalid: "が不正な値です。"
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

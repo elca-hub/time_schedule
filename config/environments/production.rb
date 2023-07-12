@@ -90,4 +90,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # メール配信に関する設定項目
+  config.action_mailer.default_url_options = { host: 'https://www.elca-web.com' }
+  config.action_mailer.delivery_method = :aws_sdk
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { build(:user) }
-  subject { user } 
+  subject { user }
 
   describe "バリデーション関連" do
     context "全ての属性が完璧な場合" do
@@ -49,6 +49,7 @@ RSpec.describe User, type: :model do
       context "パスワードが6文字未満の場合" do
         it '無効' do
           user.password = "a" * 5
+          user.password_confirmation = "a" * 5
 
           is_expected.not_to be_valid
         end
@@ -57,8 +58,25 @@ RSpec.describe User, type: :model do
       context "パスワードが6文字以上の場合" do
         it '有効' do
           user.password = "a" * 6
+          user.password_confirmation = "a" * 6
 
           is_expected.to be_valid
+        end
+      end
+
+      context "パスワードが確認用と一致しない場合" do
+        it '無効' do
+          user.password = "a" * 6
+
+          is_expected.not_to be_valid
+        end
+      end
+
+      context "確認用パスワードが空の場合" do
+        it '無効' do
+          user.password_confirmation = ""
+
+          is_expected.not_to be_valid
         end
       end
     end
